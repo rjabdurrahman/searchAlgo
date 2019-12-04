@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input onkeyup="inputed(event)" type="text" placeholder="Search">
+    <script>
+        let mywordlist = ['anyway', 'apple', 'america', 'amazon', 'advanture', 'ample', 'amplifire', 'azure', 'accompany', 'accurate', 'account', 'adbestment'];
+        function inputed(e) {
+            var gText = e.target.value;
+            var gTextArr = gText.split('');
+            var regExText = '';
+            for (i = 0; i < gTextArr.length; i++) {
+                let gcTextArr = Object.assign([], gTextArr);
+                gcTextArr[i] = '[a-z]';
+                regExText += gcTextArr.join('') + '|';
+            }
+            let regEx = new RegExp(regExText.slice(0, -1));
+            let result = mywordlist.filter(
+                x => regEx.test(x)
+            );
+            console.log(result);
+        }
+    </script>
+</body>
+
+</html>
